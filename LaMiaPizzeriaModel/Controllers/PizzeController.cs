@@ -6,19 +6,16 @@ namespace LaMiaPizzeriaModel.Controllers
 {
     public class PizzeController : Controller
     {
+       
+
         public IActionResult PizzeIndex()
         {
-            return View();
+            List<Pizza> listaDellePizze = DataPizza.GetPizze();
+
+            return View("Index", listaDellePizze);
         }
 
-        public IActionResult Index()
-        {
-            List<Pizza> listaDeiPost = DataPizza.GetPizze();
-
-            return View("Index", listaDeiPost);
-        }
-
-        public IActionResult Details(int id)
+        public IActionResult PizzeIndex(int id)
         {
             List<Pizza> listaDellePizze = DataPizza.GetPizze();
 
@@ -30,7 +27,7 @@ namespace LaMiaPizzeriaModel.Controllers
                 }
             }
 
-            return NotFound("Il post con l'id cercato non esiste!");
+            return NotFound("la pizza con l'id cercato non esiste!");
         }
 
 

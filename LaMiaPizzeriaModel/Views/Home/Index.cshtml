@@ -36,6 +36,16 @@
         </nav>
     </header>
     <!-- impostazione main -->
+
+    @model List<Pizza>
+
+@if (Model.Count == 0)
+{
+    <h3>Non ci sono Post da Visualizzare!</h3>
+}
+else
+{
+
     <main>
 
         <!-- primo container main -->
@@ -62,6 +72,29 @@
         <!-- impostazione secondo contenitore main -->
 
         <h1 class="text-center mt-4 mb-4 p-3  bg-dark text-white"> Le nostre Pizze </h1>
+
+        <div class="container mt-3 ">
+
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-4 justify-content-evenly">
+
+
+                <!--Primo card-->
+                @foreach(Pizza pizza in Model){
+                <div class="card border-0" style="width: 18rem;">
+                    <img src="@pizza.Image" class="card-img-top" alt="Margherita Pizza">
+                    <div class="card-body  ">
+                        <h5 class="card-title">@pizza.Title</h5>
+                        <p class="card-text">@pizza.Description</p>
+                        <p>@pizza.Prezzo</p>
+                                <p class="btn btn-primary" href="@Url.Action("PizzeIndex", "Pizze", new { id = @pizza.Id } )" role="button">Dettagli</p>
+                    </div>
+                </div>
+                }
+
+               
+
+    </main>
+    }
         <!--footer-->
         <footer class="text-center bg-dark m-0 p-0 g-0 ">
 
@@ -87,7 +120,7 @@
                 crossorigin="anonymous"></script>
         <script type="text/javascript" src="script.js"></script>
 
-    </main>
+
 
 </body>
 
